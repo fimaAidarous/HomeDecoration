@@ -1,0 +1,23 @@
+﻿@model HomeDecoration.Models.DTO.Product
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Print Product</title>
+</head>
+<body>
+    <h1>Customers Details</h1>
+    <p>Product ID: @Model.Id</p>
+    <p>Name: @Model.Name</p>
+    <p>Description: @Model.Description</p>
+    <p>Price: @Model.Price</p>
+    <p>Stock: @Model.Stock</p>
+    <p>Status: @Model.Status</p>
+    <p>Created At: @Model.CreatedAt</p>
+    <script>
+        window.print();
+        window.close();
+
+    </script>
+</body>
+</html>

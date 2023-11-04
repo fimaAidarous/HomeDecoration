@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\HomeDecoration.props" />
+</Project>

@@ -1,0 +1,74 @@
+﻿@model HomeDecoration.Models.DTO.RegistrationModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h3 class="text-danger">Registration</h3>
+                <form asp-action="Registration" method="post">
+                    <div class="mb-3 text-danger">
+                        <label for="FirstName" class="form-label">First Name*</label>
+                        <input type="text" class="form-control" id="FirstName" name="FirstName" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 text-danger">
+                        <label for="LastName" class="form-label">Last Name*</label>
+                        <input type="text" class="form-control" id="LastName" name="LastName" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 text-danger">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="Email" name="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 text-danger">
+                        <label for="UserName" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="UserName" name="UserName" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 text-danger">
+                        <label for="Password" class="form-label">Password (e.g., John@123)</label>
+                        <input type="password" class="form-control" id="Password" name="Password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3 text-danger">
+                        <label for="PasswordConfirm" class="form-label">Password confirm</label>
+                        <input type="password" class="form-control" id="PasswordConfirm" name="PasswordConfirm" />
+                        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                    </div>
+
+                    @if (TempData["msg"] != null)
+                    {
+                        <div class="text-info mb-3">
+                            @TempData["msg"]
+                        </div>
+                    }
+
+                    <div class="mb-3 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-danger btn-lg">Registration</button>
+                        <a class="btn btn-danger btn-lg" href="/UserAuthen/Login">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

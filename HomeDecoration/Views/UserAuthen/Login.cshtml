@@ -1,0 +1,41 @@
+﻿@model HomeDecoration.Models.DTO.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+</head>
+<body>
+   
+    <form asp-action="Login" method="post" class="p-5 mx-auto mt-5" style="max-width: 400px; border: 1px solid #FF0000;">
+        <div class="text-center mb-3">
+            <img src="~/logo.png" width="100" height="60" />
+        </div>
+        <div class="mb-3 text-danger">
+            <label asp-for="UserName" class="form-label">UserName</label>
+            <input type="text" asp-for="UserName" class="form-control" placeholder="Enter UserName">
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="mb-3 text-danger">
+            <label asp-for="Password" class="form-label">Password</label>
+            <input type="password" asp-for="Password" class="form-control" placeholder="Enter Password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        @if (TempData["msg"] != null)
+        {
+            <div class="mb-3 alert alert-danger">@TempData["msg"]</div>
+        }
+        <button type="submit" class="btn btn-danger">Login</button>
+        <a class="mt-2 d-block text-danger" href="/UserAuthen/Registration">
+            Not a user? Signu
+            p</a>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
