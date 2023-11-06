@@ -72,15 +72,26 @@ public class OrderController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(
-        [Bind("Id,CustomerId,ProductId,Order_Date,Total_Amount")] Order order)
+    public async Task<IActionResult> Create([Bind("Id,CustomerId,ProductId,Order_Date,Total_Amount")] Order order)
     {
         if (ModelState.IsValid)
         {
-            order.CreatedAt = DateTime.Now;
+            // Retrieve the selected product based on the provided ProductId
+            var product = await _context.Products.FindAsync(order.ProductId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            order.Order_Date = DateTime.Now;
+            // Set the Total_Amount of the order to the price of the selected product
+            order.Total_Amount = product.Price;
+
             _context.Add(order);
             await _context.SaveChangesAsync();
-            var invoice = new Invoice() {
+
+            var invoice = new Invoice()
+            {
                 OrderId = order.Id,
                 Total_Amount = order.Total_Amount,
                 CreatedAt = DateTime.Now,
@@ -88,6 +99,7 @@ public class OrderController : Controller
             };
             _context.Invoices.Add(invoice);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 

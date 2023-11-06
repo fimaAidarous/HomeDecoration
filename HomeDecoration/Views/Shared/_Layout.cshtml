@@ -72,7 +72,7 @@
                 }
             </div>
             <div class="list-group list-group-flush my-3">
-                <a asp-controller="UserAuthentication" asp-action="Logout" class="list-group-item list-group-item-action bg-danger shadow text-white rounded-2 m-2 second-text fw-bold">
+                <a href="@Url.Action("Logout","UserAuthen")" class="list-group-item list-group-item-action bg-danger shadow text-white rounded-2 m-2 second-text fw-bold">
                     <i class="fas fa-power-off me-2"></i>Logout
                 </a>
             </div>

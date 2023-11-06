@@ -76,6 +76,7 @@ namespace HomeDecoration.Repository.Interfaces
         public async Task LogoutAsync()
         {
             await signInManager.SignOutAsync();
+
         }
 
         public async Task<Status> RegistrationAsync(RegistrationModel model)

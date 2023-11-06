@@ -44,11 +44,24 @@ namespace HomeDecoration.Controllers
         }
 
         // GET: Products/Create
+
+        [HttpGet]
+        public IActionResult GetProductPrice(int id)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == id);
+            if (product != null)
+            {
+                return Json(new { success = true, price = product.Price });
+            }
+
+            return Json(new { success = false });
+        }
         public IActionResult Create()
         {
             return View();
         }
 
+        //```csharp
 
         [HttpPost]
         [ValidateAntiForgeryToken]

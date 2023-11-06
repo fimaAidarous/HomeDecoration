@@ -160,7 +160,5 @@ namespace HomeDecoration.Controllers
             var customer = _context.Customers.FirstOrDefault(m => m.Id == id);
             return PartialView("_Print", customer);
         }
-
-
     }
 }
