@@ -5,11 +5,6 @@ List<
 
 <form asp-action="Edit">
     <div class="form-group">
-        <label asp-for="OrderId" class="control-label">Order</label>
-        <select asp-for="OrderId" class="form-control" asp-items="ViewBag.Order" data-payment-status="@Model.Payment_Status"></select>
-    </div>
-
-    <div class="form-group">
         <label asp-for="Payment_Status" class="control-label">Payment Status</label>
         <select asp-for="Payment_Status" class="form-control">
             <option value="Paid">Paid</option>

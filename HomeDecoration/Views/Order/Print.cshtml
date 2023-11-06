@@ -1,0 +1,20 @@
+﻿@model HomeDecoration.Models.DTO.Order
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Print Order</title>
+</head>
+<body>
+    <h1>Customers Details</h1>
+    <p>Customer ID: @Model.Id</p>
+    <p>Product Id: @Model.ProductId</p>
+    <p>Order Date: @Model.Order_Date</p>
+    <p>Total Amount: @Model.Total_Amount</p>
+    <p>Created At: @Model.CreatedAt</p>
+    <script>
+        window.print();
+        window.close();
+    </script>
+</body>
+</html>

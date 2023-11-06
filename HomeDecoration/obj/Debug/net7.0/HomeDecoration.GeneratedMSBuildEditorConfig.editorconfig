@@ -40,8 +40,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/sem8/Project/HomeDecoration/HomeDecoration/Views/Customer/_Print.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcX1ByaW50LmNzaHRtbA==
+[D:/sem8/Project/HomeDecoration/HomeDecoration/Views/Customer/Print.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcUHJpbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/sem8/Project/HomeDecoration/HomeDecoration/Views/Dashboard/Display.cshtml]
@@ -90,6 +90,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/sem8/Project/HomeDecoration/HomeDecoration/Views/Order/OrderIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcT3JkZXJJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/sem8/Project/HomeDecoration/HomeDecoration/Views/Order/Print.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcUHJpbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/sem8/Project/HomeDecoration/HomeDecoration/Views/Product/Create.cshtml]
