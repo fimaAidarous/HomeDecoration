@@ -4,6 +4,7 @@ using HomeDecoration.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeDecoration.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231107070435_paymentss")]
+    partial class paymentss
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,13 +113,19 @@ namespace HomeDecoration.Migrations
             modelBuilder.Entity("HomeDecoration.Models.DTO.Payment", b =>
                 {
                     b.Property<int>("InvoiceId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvoiceId"));
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Discount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("InvoiceId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("Payment_Type")
                         .HasColumnType("nvarchar(max)");
@@ -125,6 +134,8 @@ namespace HomeDecoration.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("InvoiceId");
+
+                    b.HasIndex("InvoiceId1");
 
                     b.ToTable("Payments");
                 });
@@ -398,8 +409,8 @@ namespace HomeDecoration.Migrations
             modelBuilder.Entity("HomeDecoration.Models.DTO.Payment", b =>
                 {
                     b.HasOne("HomeDecoration.Models.DTO.Invoice", "Invoice")
-                        .WithOne("Payment")
-                        .HasForeignKey("HomeDecoration.Models.DTO.Payment", "InvoiceId")
+                        .WithMany()
+                        .HasForeignKey("InvoiceId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -455,11 +466,6 @@ namespace HomeDecoration.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("HomeDecoration.Models.DTO.Invoice", b =>
-                {
-                    b.Navigation("Payment");
                 });
 #pragma warning restore 612, 618
         }

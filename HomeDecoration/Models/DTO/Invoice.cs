@@ -12,6 +12,8 @@ namespace HomeDecoration.Models.DTO
 
         public Order? Order { get; set; }
 
+        public Payment? Payment { get; set; }
+
         public int Total_Amount { get; set; }
 
         public string? Payment_Status { get; set; }

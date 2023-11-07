@@ -72,7 +72,7 @@ public class OrderController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,CustomerId,ProductId,Order_Date,Total_Amount,Quantity")] Order order)
+    public async Task<IActionResult> Create([Bind("Id,CustomerId,ProductId,Total_Amount,Quantity")] Order order)
     {
         if (ModelState.IsValid)
         {
@@ -83,7 +83,6 @@ public class OrderController : Controller
                 return NotFound();
             }
 
-            order.Order_Date = DateTime.Now;
             // Set the Total_Amount of the order to the price of the selected product
             order.Total_Amount = product.Price * order.Quantity;
 
@@ -135,7 +134,7 @@ public class OrderController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit( int id,[Bind("Id,CustomerId,ProductId,Order_Date,Total_Amount,Quantity")] Order order)
+    public async Task<IActionResult> Edit( int id,[Bind("Id,CustomerId,ProductId,Total_Amount,Quantity")] Order order)
     {
         if (id != order.Id)
         {

@@ -94,6 +94,9 @@ namespace HomeDecoration.Controllers
             {
                 return NotFound();
             }
+
+            var payment = await _context.Payments.FirstOrDefaultAsync(p => p.InvoiceId == id);
+            invoice.Payment = payment;
             return View(invoice);
         }
 
@@ -114,7 +117,10 @@ namespace HomeDecoration.Controllers
             {
                 try
                 {
-                    _context.Update(invoice);
+                    if (invoice.Payment != null)
+                    {
+                        _context.Update(invoice.Payment);
+                    }
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

@@ -4,6 +4,7 @@ using HomeDecoration.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeDecoration.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231107070251_payment")]
+    partial class payment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,28 +108,6 @@ namespace HomeDecoration.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("HomeDecoration.Models.DTO.Payment", b =>
-                {
-                    b.Property<int>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("Discount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Payment_Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Remainder")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("InvoiceId");
-
-                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("HomeDecoration.Models.DTO.Product", b =>
@@ -395,17 +376,6 @@ namespace HomeDecoration.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("HomeDecoration.Models.DTO.Payment", b =>
-                {
-                    b.HasOne("HomeDecoration.Models.DTO.Invoice", "Invoice")
-                        .WithOne("Payment")
-                        .HasForeignKey("HomeDecoration.Models.DTO.Payment", "InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Invoice");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -455,11 +425,6 @@ namespace HomeDecoration.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("HomeDecoration.Models.DTO.Invoice", b =>
-                {
-                    b.Navigation("Payment");
                 });
 #pragma warning restore 612, 618
         }
