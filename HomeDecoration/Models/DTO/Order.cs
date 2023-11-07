@@ -19,6 +19,8 @@ namespace HomeDecoration.Models.DTO
 
         public int Total_Amount { get; set; }
 
+        public int Quantity { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
     }

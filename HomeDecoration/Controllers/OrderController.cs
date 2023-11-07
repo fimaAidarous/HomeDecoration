@@ -72,7 +72,7 @@ public class OrderController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("Id,CustomerId,ProductId,Order_Date,Total_Amount")] Order order)
+    public async Task<IActionResult> Create([Bind("Id,CustomerId,ProductId,Order_Date,Total_Amount,Quantity")] Order order)
     {
         if (ModelState.IsValid)
         {
@@ -85,7 +85,7 @@ public class OrderController : Controller
 
             order.Order_Date = DateTime.Now;
             // Set the Total_Amount of the order to the price of the selected product
-            order.Total_Amount = product.Price;
+            order.Total_Amount = product.Price * order.Quantity;
 
             _context.Add(order);
             await _context.SaveChangesAsync();
@@ -102,9 +102,20 @@ public class OrderController : Controller
 
             return RedirectToAction(nameof(Index));
         }
-
+        PopulateDropDownLists(order.ProductId, order.CustomerId);
         return View(order);
     }
+
+    private void PopulateDropDownLists(int? selectedProductId = null, int? selectedCustomerId = null)
+    {
+        var products = _context.Products.ToList();
+        var customers = _context.Customers.ToList();
+
+        ViewBag.Products = new SelectList(products, "Id", "Name", selectedProductId);
+        ViewBag.Customers = new SelectList(customers, "Id", "Name", selectedCustomerId);
+    }
+
+
 
     // GET: Orders/Edit/5
     public async Task<IActionResult> Edit(int? id)
@@ -124,7 +135,7 @@ public class OrderController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit( int id,[Bind("Id,CustomerId,ProductId,Order_Date,Total_Amount")] Order order)
+    public async Task<IActionResult> Edit( int id,[Bind("Id,CustomerId,ProductId,Order_Date,Total_Amount,Quantity")] Order order)
     {
         if (id != order.Id)
         {
